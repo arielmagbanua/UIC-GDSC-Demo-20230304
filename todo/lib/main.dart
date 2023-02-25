@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'pages/register_page.dart';
 import 'firebase_options.dart';
 import 'pages/error_page.dart';
 import 'pages/loading_page.dart';
@@ -31,6 +32,10 @@ class MyApp extends StatefulWidget {
       case LoginPage.routeName:
         return MaterialPageRoute(
           builder: (_) => const LoginPage(),
+        );
+      case RegisterPage.routeName:
+        return MaterialPageRoute(
+          builder: (_) => const RegisterPage(),
         );
       default:
         return MaterialPageRoute(
