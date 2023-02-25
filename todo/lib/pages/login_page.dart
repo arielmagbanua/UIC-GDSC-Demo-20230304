@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 /// The login page of the app which supports
 /// credential and social media authentication.
@@ -61,7 +63,9 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 16.0),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  await _loginWithGoogle();
+                },
                 child: const Text('Google'),
               )
             ],
@@ -69,5 +73,22 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  Future<UserCredential> _loginWithGoogle() async {
+    // trigger the authentication flow
+    final googleUser = await GoogleSignIn().signIn();
+
+    // obtain the auth details from the request
+    final googleAuth = await googleUser?.authentication;
+
+    // create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }
