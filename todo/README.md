@@ -24,7 +24,7 @@ A Simple TODO Project
     ```shell
     flutterfire configure
     ```
-   FlutterFire CLI will create configuration files such as the [Firebase Options](## Firebase Options) based on the platform your will support.
+   FlutterFire CLI will create configuration files such as the [Firebase Options](#firebase-options) based on the platform your will support.
 
 ### Initialize Firebase in your Flutter App
 
