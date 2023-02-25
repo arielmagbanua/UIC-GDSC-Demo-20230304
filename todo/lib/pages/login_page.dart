@@ -17,12 +17,54 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Column(
-              children: [],
-            ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              TextFormField(
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  helperText: 'The email of the user',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 16.0),
+              TextFormField(
+                keyboardType: TextInputType.text,
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
+                obscuringCharacter: '*',
+                decoration: const InputDecoration(
+                  labelText: 'Password',
+                  helperText: 'The password of the user',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text('LOGIN'),
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text('SIGN-UP'),
+              ),
+              const SizedBox(height: 32.0),
+              Text(
+                'Supported Social Media Login',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text('Google'),
+              )
+            ],
           ),
         ),
       ),
