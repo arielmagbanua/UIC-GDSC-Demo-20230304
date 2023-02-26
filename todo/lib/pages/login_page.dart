@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:todo/pages/register_page.dart';
 
 /// The login page of the app which supports
 /// credential and social media authentication.
@@ -52,7 +53,12 @@ class _LoginPageState extends State<LoginPage> {
                 child: const Text('LOGIN'),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  // navigate to the register or signup page
+                  Navigator.of(context).pushNamed(
+                    RegisterPage.routeName,
+                  );
+                },
                 child: const Text('SIGN-UP'),
               ),
               const SizedBox(height: 32.0),
