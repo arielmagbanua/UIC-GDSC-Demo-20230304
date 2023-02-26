@@ -56,10 +56,9 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () async {
-                  // login using email and password
-                  await FirebaseAuth.instance.signInWithEmailAndPassword(
-                    email: _emailController.text,
-                    password: _passwordController.text,
+                  await _loginWithEmailAndPassword(
+                    _emailController.text,
+                    _passwordController.text,
                   );
                 },
                 child: const Text('LOGIN'),
@@ -93,6 +92,18 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  /// Login user using email and password.
+  Future<UserCredential> _loginWithEmailAndPassword(
+    String email,
+    String password,
+  ) {
+    return FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+  }
+
+  /// Login user using google account.
   Future<UserCredential> _loginWithGoogle() async {
     // trigger the authentication flow
     final googleUser = await GoogleSignIn().signIn();
