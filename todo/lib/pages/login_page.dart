@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:todo/pages/register_page.dart';
+
+import 'register_page.dart';
 
 /// The login page of the app which supports
 /// credential and social media authentication.
