@@ -16,6 +16,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // text editing controllers for the email and password
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +37,7 @@ class _LoginPageState extends State<LoginPage> {
                   helperText: 'The email of the user',
                   border: OutlineInputBorder(),
                 ),
+                controller: _emailController,
               ),
               const SizedBox(height: 16.0),
               TextFormField(
@@ -46,10 +51,17 @@ class _LoginPageState extends State<LoginPage> {
                   helperText: 'The password of the user',
                   border: OutlineInputBorder(),
                 ),
+                controller: _passwordController,
               ),
               const SizedBox(height: 16.0),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  // login using email and password
+                  await FirebaseAuth.instance.signInWithEmailAndPassword(
+                    email: _emailController.text,
+                    password: _passwordController.text,
+                  );
+                },
                 child: const Text('LOGIN'),
               ),
               ElevatedButton(
