@@ -14,6 +14,11 @@ class TasksPage extends StatefulWidget {
 class _TasksPageState extends State<TasksPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Tasks'),
+      ),
+      body: const Placeholder(),
+    );
   }
 }
