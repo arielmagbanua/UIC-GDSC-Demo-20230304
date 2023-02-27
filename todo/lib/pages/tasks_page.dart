@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import 'add_task_page.dart';
+
 /// The tasks page which will display all the tasks for a certain user.
 class TasksPage extends StatefulWidget {
   // route name of the page
@@ -34,6 +36,12 @@ class _TasksPageState extends State<TasksPage> {
       appBar: AppBar(
         title: const Text('Tasks'),
         actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(AddTaskPage.routeName);
+            },
+            icon: const Icon(Icons.add),
+          ),
           IconButton(
             onPressed: () async {
               // sign out the user
@@ -150,7 +158,9 @@ class _TasksPageState extends State<TasksPage> {
                   }
 
                   // update the task document
-                  _tasksRef.doc(task.id).set(dataUpdate, SetOptions(merge: true));
+                  _tasksRef
+                      .doc(task.id)
+                      .set(dataUpdate, SetOptions(merge: true));
                 },
               ),
             ),
