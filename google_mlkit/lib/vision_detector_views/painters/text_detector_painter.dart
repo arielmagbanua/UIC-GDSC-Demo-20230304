@@ -8,7 +8,10 @@ import 'coordinates_translator.dart';
 
 class TextRecognizerPainter extends CustomPainter {
   TextRecognizerPainter(
-      this.recognizedText, this.absoluteImageSize, this.rotation);
+    this.recognizedText,
+    this.absoluteImageSize,
+    this.rotation,
+  );
 
   final RecognizedText recognizedText;
   final Size absoluteImageSize;
@@ -26,23 +29,44 @@ class TextRecognizerPainter extends CustomPainter {
     for (final textBlock in recognizedText.blocks) {
       final ParagraphBuilder builder = ParagraphBuilder(
         ParagraphStyle(
-            textAlign: TextAlign.left,
-            fontSize: 16,
-            textDirection: TextDirection.ltr),
+          textAlign: TextAlign.left,
+          fontSize: 16,
+          textDirection: TextDirection.ltr,
+        ),
       );
       builder.pushStyle(
-          ui.TextStyle(color: Colors.lightGreenAccent, background: background));
+        ui.TextStyle(
+          color: Colors.lightGreenAccent,
+          background: background,
+        ),
+      );
       builder.addText(textBlock.text);
       builder.pop();
 
       final left = translateX(
-          textBlock.boundingBox.left, rotation, size, absoluteImageSize);
+        textBlock.boundingBox.left,
+        rotation,
+        size,
+        absoluteImageSize,
+      );
       final top = translateY(
-          textBlock.boundingBox.top, rotation, size, absoluteImageSize);
+        textBlock.boundingBox.top,
+        rotation,
+        size,
+        absoluteImageSize,
+      );
       final right = translateX(
-          textBlock.boundingBox.right, rotation, size, absoluteImageSize);
+        textBlock.boundingBox.right,
+        rotation,
+        size,
+        absoluteImageSize,
+      );
       final bottom = translateY(
-          textBlock.boundingBox.bottom, rotation, size, absoluteImageSize);
+        textBlock.boundingBox.bottom,
+        rotation,
+        size,
+        absoluteImageSize,
+      );
 
       canvas.drawRect(
         Rect.fromLTRB(left, top, right, bottom),
@@ -51,9 +75,11 @@ class TextRecognizerPainter extends CustomPainter {
 
       canvas.drawParagraph(
         builder.build()
-          ..layout(ParagraphConstraints(
-            width: right - left,
-          )),
+          ..layout(
+            ParagraphConstraints(
+              width: right - left,
+            ),
+          ),
         Offset(left, top),
       );
     }

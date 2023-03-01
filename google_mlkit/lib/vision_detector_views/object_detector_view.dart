@@ -112,9 +112,10 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
     if (inputImage.inputImageData?.size != null &&
         inputImage.inputImageData?.imageRotation != null) {
       final painter = ObjectDetectorPainter(
-          objects,
-          inputImage.inputImageData!.imageRotation,
-          inputImage.inputImageData!.size);
+        objects,
+        inputImage.inputImageData!.imageRotation,
+        inputImage.inputImageData!.size,
+      );
       _customPaint = CustomPaint(painter: painter);
     } else {
       String text = 'Objects found: ${objects.length}\n\n';
@@ -141,8 +142,10 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
     final file = io.File(path);
     if (!await file.exists()) {
       final byteData = await rootBundle.load(assetPath);
-      await file.writeAsBytes(byteData.buffer
-          .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+      await file.writeAsBytes(byteData.buffer.asUint8List(
+        byteData.offsetInBytes,
+        byteData.lengthInBytes,
+      ));
     }
     return file.path;
   }

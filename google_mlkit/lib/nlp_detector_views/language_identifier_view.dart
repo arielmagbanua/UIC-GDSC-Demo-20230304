@@ -23,46 +23,53 @@ class _LanguageIdentifierViewState extends State<LanguageIdentifierView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Language Identification')),
-      body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: TextField(
-            controller: _controller,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: TextField(
+              controller: _controller,
+            ),
           ),
-        ),
-        SizedBox(height: 15),
-        _identifiedLanguage == ''
-            ? Container()
-            : Container(
-                margin: EdgeInsets.only(bottom: 5),
-                child: Text(
-                  'Identified Language: $_identifiedLanguage',
-                  style: TextStyle(fontSize: 20),
-                )),
-        ElevatedButton(
-            onPressed: _identifyLanguage,
-            child: const Text('Identify Language')),
-        SizedBox(height: 15),
-        ElevatedButton(
-          onPressed: _identifyPossibleLanguages,
-          child: const Text('Identify possible languages'),
-        ),
-        ListView.builder(
+          SizedBox(height: 15),
+          _identifiedLanguage == ''
+              ? Container()
+              : Container(
+                  margin: EdgeInsets.only(bottom: 5),
+                  child: Text(
+                    'Identified Language: $_identifiedLanguage',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+          ElevatedButton(
+              onPressed: _identifyLanguage,
+              child: const Text('Identify Language')),
+          SizedBox(height: 15),
+          ElevatedButton(
+            onPressed: _identifyPossibleLanguages,
+            child: const Text('Identify possible languages'),
+          ),
+          ListView.builder(
             shrinkWrap: true,
             itemCount: _identifiedLanguages.length,
             itemBuilder: (context, index) {
               return ListTile(
                 title: Text(
-                    'Language: ${_identifiedLanguages[index].languageTag}  Confidence: ${_identifiedLanguages[index].confidence.toString()}'),
+                  'Language: ${_identifiedLanguages[index].languageTag}  Confidence: ${_identifiedLanguages[index].confidence.toString()}',
+                ),
               );
-            })
-      ]),
+            },
+          )
+        ],
+      ),
     );
   }
 
   Future<void> _identifyLanguage() async {
     if (_controller.text == '') return;
     String language;
+
     try {
       language = await _languageIdentifier.identifyLanguage(_controller.text);
     } on PlatformException catch (pe) {
@@ -81,6 +88,7 @@ class _LanguageIdentifierViewState extends State<LanguageIdentifierView> {
   Future<void> _identifyPossibleLanguages() async {
     if (_controller.text == '') return;
     String error;
+
     try {
       final possibleLanguages =
           await _languageIdentifier.identifyPossibleLanguages(_controller.text);

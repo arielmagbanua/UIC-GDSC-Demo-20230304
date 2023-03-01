@@ -43,11 +43,13 @@ class _DigitalInkViewState extends State<DigitalInkView> {
                         ?.globalToLocal(details.localPosition);
                     if (localPosition != null) {
                       _points = List.from(_points)
-                        ..add(StrokePoint(
-                          x: localPosition.dx,
-                          y: localPosition.dy,
-                          t: DateTime.now().millisecondsSinceEpoch,
-                        ));
+                        ..add(
+                          StrokePoint(
+                            x: localPosition.dx,
+                            y: localPosition.dy,
+                            t: DateTime.now().millisecondsSinceEpoch,
+                          ),
+                        );
                     }
                     if (_ink.strokes.isNotEmpty) {
                       _ink.strokes.last.points = _points.toList();
@@ -123,41 +125,45 @@ class _DigitalInkViewState extends State<DigitalInkView> {
 
   Future<void> _isModelDownloaded() async {
     Toast().show(
-        'Checking if model is downloaded...',
-        _modelManager
-            .isModelDownloaded(_language)
-            .then((value) => value ? 'downloaded' : 'not downloaded'),
-        context,
-        this);
+      'Checking if model is downloaded...',
+      _modelManager
+          .isModelDownloaded(_language)
+          .then((value) => value ? 'downloaded' : 'not downloaded'),
+      context,
+      this,
+    );
   }
 
   Future<void> _deleteModel() async {
     Toast().show(
-        'Deleting model...',
-        _modelManager
-            .deleteModel(_language)
-            .then((value) => value ? 'success' : 'failed'),
-        context,
-        this);
+      'Deleting model...',
+      _modelManager
+          .deleteModel(_language)
+          .then((value) => value ? 'success' : 'failed'),
+      context,
+      this,
+    );
   }
 
   Future<void> _downloadModel() async {
     Toast().show(
-        'Downloading model...',
-        _modelManager
-            .downloadModel(_language)
-            .then((value) => value ? 'success' : 'failed'),
-        context,
-        this);
+      'Downloading model...',
+      _modelManager
+          .downloadModel(_language)
+          .then((value) => value ? 'success' : 'failed'),
+      context,
+      this,
+    );
   }
 
   Future<void> _recogniseText() async {
     showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: Text('Recognizing'),
-            ),
-        barrierDismissible: true);
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Recognizing'),
+      ),
+      barrierDismissible: true,
+    );
     try {
       final candidates = await _digitalInkRecognizer.recognize(_ink);
       _recognizedText = '';
@@ -190,8 +196,11 @@ class Signature extends CustomPainter {
       for (int i = 0; i < stroke.points.length - 1; i++) {
         final p1 = stroke.points[i];
         final p2 = stroke.points[i + 1];
-        canvas.drawLine(Offset(p1.x.toDouble(), p1.y.toDouble()),
-            Offset(p2.x.toDouble(), p2.y.toDouble()), paint);
+        canvas.drawLine(
+          Offset(p1.x.toDouble(), p1.y.toDouble()),
+          Offset(p2.x.toDouble(), p2.y.toDouble()),
+          paint,
+        );
       }
     }
   }

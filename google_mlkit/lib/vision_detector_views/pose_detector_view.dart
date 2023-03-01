@@ -11,8 +11,9 @@ class PoseDetectorView extends StatefulWidget {
 }
 
 class _PoseDetectorViewState extends State<PoseDetectorView> {
-  final PoseDetector _poseDetector =
-      PoseDetector(options: PoseDetectorOptions());
+  final PoseDetector _poseDetector = PoseDetector(
+    options: PoseDetectorOptions(),
+  );
   bool _canProcess = true;
   bool _isBusy = false;
   CustomPaint? _customPaint;
@@ -47,8 +48,11 @@ class _PoseDetectorViewState extends State<PoseDetectorView> {
     final poses = await _poseDetector.processImage(inputImage);
     if (inputImage.inputImageData?.size != null &&
         inputImage.inputImageData?.imageRotation != null) {
-      final painter = PosePainter(poses, inputImage.inputImageData!.size,
-          inputImage.inputImageData!.imageRotation);
+      final painter = PosePainter(
+        poses,
+        inputImage.inputImageData!.size,
+        inputImage.inputImageData!.imageRotation,
+      );
       _customPaint = CustomPaint(painter: painter);
     } else {
       _text = 'Poses found: ${poses.length}\n\n';

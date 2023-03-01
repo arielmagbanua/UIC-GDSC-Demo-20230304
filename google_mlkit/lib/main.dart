@@ -53,14 +53,38 @@ class Home extends StatelessWidget {
                   ExpansionTile(
                     title: const Text('Vision APIs'),
                     children: [
-                      CustomCard('Barcode Scanning', BarcodeScannerView()),
-                      CustomCard('Face Detection', FaceDetectorView()),
-                      CustomCard('Image Labeling', ImageLabelView()),
-                      CustomCard('Object Detection', ObjectDetectorView()),
-                      CustomCard('Text Recognition', TextRecognizerView()),
-                      CustomCard('Digital Ink Recognition', DigitalInkView()),
-                      CustomCard('Pose Detection', PoseDetectorView()),
-                      CustomCard('Selfie Segmentation', SelfieSegmenterView()),
+                      DemoCard(
+                        'Barcode Scanning',
+                        BarcodeScannerView(),
+                      ),
+                      DemoCard(
+                        'Face Detection',
+                        FaceDetectorView(),
+                      ),
+                      DemoCard(
+                        'Image Labeling',
+                        ImageLabelView(),
+                      ),
+                      DemoCard(
+                        'Object Detection',
+                        ObjectDetectorView(),
+                      ),
+                      DemoCard(
+                        'Text Recognition',
+                        TextRecognizerView(),
+                      ),
+                      DemoCard(
+                        'Digital Ink Recognition',
+                        DigitalInkView(),
+                      ),
+                      DemoCard(
+                        'Pose Detection',
+                        PoseDetectorView(),
+                      ),
+                      DemoCard(
+                        'Selfie Segmentation',
+                        SelfieSegmenterView(),
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -69,11 +93,22 @@ class Home extends StatelessWidget {
                   ExpansionTile(
                     title: const Text('Natural Language APIs'),
                     children: [
-                      CustomCard('Language ID', LanguageIdentifierView()),
-                      CustomCard(
-                          'On-device Translation', LanguageTranslatorView()),
-                      CustomCard('Smart Reply', SmartReplyView()),
-                      CustomCard('Entity Extraction', EntityExtractionView()),
+                      DemoCard(
+                        'Language ID',
+                        LanguageIdentifierView(),
+                      ),
+                      DemoCard(
+                        'On-device Translation',
+                        LanguageTranslatorView(),
+                      ),
+                      DemoCard(
+                        'Smart Reply',
+                        SmartReplyView(),
+                      ),
+                      DemoCard(
+                        'Entity Extraction',
+                        EntityExtractionView(),
+                      ),
                     ],
                   ),
                 ],
@@ -86,12 +121,12 @@ class Home extends StatelessWidget {
   }
 }
 
-class CustomCard extends StatelessWidget {
+class DemoCard extends StatelessWidget {
   final String _label;
   final Widget _viewPage;
   final bool featureCompleted;
 
-  const CustomCard(this._label, this._viewPage, {this.featureCompleted = true});
+  const DemoCard(this._label, this._viewPage, {this.featureCompleted = true});
 
   @override
   Widget build(BuildContext context) {
@@ -107,11 +142,13 @@ class CustomCard extends StatelessWidget {
         onTap: () {
           if (!featureCompleted) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content:
-                    const Text('This feature has not been implemented yet')));
+              content: const Text('This feature has not been implemented yet'),
+            ));
           } else {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => _viewPage));
+              context,
+              MaterialPageRoute(builder: (context) => _viewPage),
+            );
           }
         },
       ),

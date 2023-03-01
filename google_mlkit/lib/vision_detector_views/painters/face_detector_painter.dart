@@ -22,11 +22,30 @@ class FaceDetectorPainter extends CustomPainter {
     for (final Face face in faces) {
       canvas.drawRect(
         Rect.fromLTRB(
-          translateX(face.boundingBox.left, rotation, size, absoluteImageSize),
-          translateY(face.boundingBox.top, rotation, size, absoluteImageSize),
-          translateX(face.boundingBox.right, rotation, size, absoluteImageSize),
+          translateX(
+            face.boundingBox.left,
+            rotation,
+            size,
+            absoluteImageSize,
+          ),
           translateY(
-              face.boundingBox.bottom, rotation, size, absoluteImageSize),
+            face.boundingBox.top,
+            rotation,
+            size,
+            absoluteImageSize,
+          ),
+          translateX(
+            face.boundingBox.right,
+            rotation,
+            size,
+            absoluteImageSize,
+          ),
+          translateY(
+            face.boundingBox.bottom,
+            rotation,
+            size,
+            absoluteImageSize,
+          ),
         ),
         paint,
       );
@@ -36,14 +55,23 @@ class FaceDetectorPainter extends CustomPainter {
         if (faceContour?.points != null) {
           for (final Point point in faceContour!.points) {
             canvas.drawCircle(
-                Offset(
-                  translateX(
-                      point.x.toDouble(), rotation, size, absoluteImageSize),
-                  translateY(
-                      point.y.toDouble(), rotation, size, absoluteImageSize),
+              Offset(
+                translateX(
+                  point.x.toDouble(),
+                  rotation,
+                  size,
+                  absoluteImageSize,
                 ),
-                1,
-                paint);
+                translateY(
+                  point.y.toDouble(),
+                  rotation,
+                  size,
+                  absoluteImageSize,
+                ),
+              ),
+              1,
+              paint,
+            );
           }
         }
       }
