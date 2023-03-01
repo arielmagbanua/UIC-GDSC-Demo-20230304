@@ -101,13 +101,17 @@ class _ImageLabelViewState extends State<ImageLabelView> {
     if (io.Platform.isAndroid) {
       return 'flutter_assets/$assetPath';
     }
+
     final path = '${(await getApplicationSupportDirectory()).path}/$assetPath';
     await io.Directory(dirname(path)).create(recursive: true);
     final file = io.File(path);
+
     if (!await file.exists()) {
       final byteData = await rootBundle.load(assetPath);
-      await file.writeAsBytes(byteData.buffer
-          .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+      await file.writeAsBytes(byteData.buffer.asUint8List(
+        byteData.offsetInBytes,
+        byteData.lengthInBytes,
+      ));
     }
     return file.path;
   }

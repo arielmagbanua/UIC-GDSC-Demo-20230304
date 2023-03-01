@@ -26,12 +26,14 @@ class BarcodeDetectorPainter extends CustomPainter {
     for (final Barcode barcode in barcodes) {
       final ParagraphBuilder builder = ParagraphBuilder(
         ParagraphStyle(
-            textAlign: TextAlign.left,
-            fontSize: 16,
-            textDirection: TextDirection.ltr),
+          textAlign: TextAlign.left,
+          fontSize: 16,
+          textDirection: TextDirection.ltr,
+        ),
       );
       builder.pushStyle(
-          ui.TextStyle(color: Colors.lightGreenAccent, background: background));
+        ui.TextStyle(color: Colors.lightGreenAccent, background: background),
+      );
       builder.addText('${barcode.displayValue}');
       builder.pop();
 
@@ -45,13 +47,30 @@ class BarcodeDetectorPainter extends CustomPainter {
       final boundingBox = barcode.boundingBox;
       if (cornerPoints == null) {
         if (boundingBox != null) {
-          left =
-              translateX(boundingBox.left, rotation, size, absoluteImageSize);
-          top = translateY(boundingBox.top, rotation, size, absoluteImageSize);
-          right =
-              translateX(boundingBox.right, rotation, size, absoluteImageSize);
-          bottom =
-              translateY(boundingBox.bottom, rotation, size, absoluteImageSize);
+          left = translateX(
+            boundingBox.left,
+            rotation,
+            size,
+            absoluteImageSize,
+          );
+          top = translateY(
+            boundingBox.top,
+            rotation,
+            size,
+            absoluteImageSize,
+          );
+          right = translateX(
+            boundingBox.right,
+            rotation,
+            size,
+            absoluteImageSize,
+          );
+          bottom = translateY(
+            boundingBox.bottom,
+            rotation,
+            size,
+            absoluteImageSize,
+          );
 
           // Draw a bounding rectangle around the barcode
           canvas.drawRect(
@@ -62,10 +81,18 @@ class BarcodeDetectorPainter extends CustomPainter {
       } else {
         final List<Offset> offsetPoints = <Offset>[];
         for (final point in cornerPoints) {
-          final double x =
-              translateX(point.x.toDouble(), rotation, size, absoluteImageSize);
-          final double y =
-              translateY(point.y.toDouble(), rotation, size, absoluteImageSize);
+          final double x = translateX(
+            point.x.toDouble(),
+            rotation,
+            size,
+            absoluteImageSize,
+          );
+          final double y = translateY(
+            point.y.toDouble(),
+            rotation,
+            size,
+            absoluteImageSize,
+          );
 
           offsetPoints.add(Offset(x, y));
 
@@ -82,9 +109,11 @@ class BarcodeDetectorPainter extends CustomPainter {
 
       canvas.drawParagraph(
         builder.build()
-          ..layout(ParagraphConstraints(
-            width: right - left,
-          )),
+          ..layout(
+            ParagraphConstraints(
+              width: right - left,
+            ),
+          ),
         Offset(left, top),
       );
     }

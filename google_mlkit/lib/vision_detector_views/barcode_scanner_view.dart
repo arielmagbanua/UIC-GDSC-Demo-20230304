@@ -46,9 +46,10 @@ class _BarcodeScannerViewState extends State<BarcodeScannerView> {
     if (inputImage.inputImageData?.size != null &&
         inputImage.inputImageData?.imageRotation != null) {
       final painter = BarcodeDetectorPainter(
-          barcodes,
-          inputImage.inputImageData!.size,
-          inputImage.inputImageData!.imageRotation);
+        barcodes,
+        inputImage.inputImageData!.size,
+        inputImage.inputImageData!.imageRotation,
+      );
       _customPaint = CustomPaint(painter: painter);
     } else {
       String text = 'Barcodes found: ${barcodes.length}\n\n';
