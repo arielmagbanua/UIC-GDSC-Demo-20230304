@@ -92,6 +92,7 @@ class _TasksPageState extends State<TasksPage> {
       itemBuilder: (context, index) {
         // get the task
         final task = tasks[index];
+        final taskDoc = task.data();
 
         // get the deadline as timestamp
         final deadline = task['deadline'] as Timestamp;
@@ -144,7 +145,9 @@ class _TasksPageState extends State<TasksPage> {
                   task['title'],
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
-                value: task['finished'],
+                value: taskDoc.containsKey('finished')
+                    ? taskDoc['finished']
+                    : false,
                 onChanged: (bool? value) {
                   // prepare data update
                   var dataUpdate = <String, Object?>{'finished': value};
@@ -158,9 +161,10 @@ class _TasksPageState extends State<TasksPage> {
                   }
 
                   // update the task document
-                  _tasksRef
-                      .doc(task.id)
-                      .set(dataUpdate, SetOptions(merge: true));
+                  _tasksRef.doc(task.id).set(
+                        dataUpdate,
+                        SetOptions(merge: true),
+                      );
                 },
               ),
             ),
