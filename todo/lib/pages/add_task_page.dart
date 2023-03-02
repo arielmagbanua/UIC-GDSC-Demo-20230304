@@ -46,7 +46,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
               final task = <String, dynamic>{
                 'title': _titleInputController.text,
                 'finished': false,
-                'owner': _currentUser!.email,
+                'owner': _currentUser!.uid,
               };
 
               // create the deadline timestamp

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
 
   // text editing controllers for the form fields
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
@@ -34,6 +36,9 @@ class _RegisterPageState extends State<RegisterPage> {
     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$',
   );
 
+  // users collection reference
+  final _usersRef = FirebaseFirestore.instance.collection('users');
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -47,11 +52,25 @@ class _RegisterPageState extends State<RegisterPage> {
                 // validate returns true if the form is valid, or false otherwise
                 if (_formKey.currentState!.validate()) {
                   try {
-                    // form is valid then create the user and automatically log the user.
-                    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                    // form is valid then create the user and
+                    // obtain the user credential
+                    final userCredential = await FirebaseAuth.instance
+                        .createUserWithEmailAndPassword(
                       email: _emailController.text,
                       password: _passwordController.text,
                     );
+
+                    // the data of the user
+                    final userDoc = <String, dynamic>{
+                      'name': _nameController.text,
+                      'email': userCredential.user!.email,
+                    };
+
+                    // create a user doc to user collection
+                    _usersRef.doc(userCredential.user!.uid).set(
+                          userDoc,
+                          SetOptions(merge: true),
+                        );
 
                     // create user was successful notify user
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -93,6 +112,24 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           child: Column(
             children: [
+              TextFormField(
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
+                  labelText: 'Name',
+                  helperText: 'The name of the user',
+                  border: OutlineInputBorder(),
+                ),
+                controller: _nameController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    // no email provided
+                    return 'Please provide the name of the user';
+                  }
+
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16.0),
               TextFormField(
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(

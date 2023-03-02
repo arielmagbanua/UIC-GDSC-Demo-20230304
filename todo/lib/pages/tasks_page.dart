@@ -28,7 +28,7 @@ class _TasksPageState extends State<TasksPage> {
     final tasksStream = _tasksRef
         .where(
           'owner',
-          isEqualTo: _currentUser!.email,
+          isEqualTo: _currentUser!.uid,
         )
         .snapshots();
 
