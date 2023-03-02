@@ -6,7 +6,7 @@ My Flutter and Firebase Demo Projects for UIC-GDSC Event
 
 ## Install the Required Command Line Tools
 
-1. [Install Flutter SDK] (https://medium.com/@arielmagbanua/how-to-install-flutter-sdk-for-windows-2208453e067b).
+1. [Install Flutter SDK](https://medium.com/@arielmagbanua/how-to-install-flutter-sdk-for-windows-2208453e067b).
 
 2. Setup Your Preferred IDE / Editor (`VSCode` / `Android Studio`).
 
@@ -34,7 +34,7 @@ My Flutter and Firebase Demo Projects for UIC-GDSC Event
     flutterfire configure
     ```
    
-   FlutterFire CLI will create configuration files such as the [Firebase Options](#firebase-options) based on the platform your will support.
+   FlutterFire CLI will create configuration files such as the [Firebase Options](todo/README.md#firebase-options) based on the platform your will support.
 
 ## Initialize Firebase in your Flutter App
 
