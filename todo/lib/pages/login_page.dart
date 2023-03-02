@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -20,6 +21,9 @@ class _LoginPageState extends State<LoginPage> {
   // text editing controllers for the email and password
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  // users collection reference
+  final _usersRef = FirebaseFirestore.instance.collection('users');
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +123,21 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     // once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    final userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+
+    // the data of the user
+    final userDoc = <String, dynamic>{
+      'name': userCredential.user!.displayName,
+      'email': userCredential.user!.email,
+    };
+
+    // create a user doc to user collection
+    _usersRef.doc(userCredential.user!.uid).set(
+      userDoc,
+      SetOptions(merge: true),
+    );
+
+    return userCredential;
   }
 }
