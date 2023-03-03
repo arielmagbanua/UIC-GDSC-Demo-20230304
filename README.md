@@ -61,3 +61,19 @@ My Flutter and Firebase Demo Projects for UIC-GDSC Event
       options: DefaultFirebaseOptions.currentPlatform,
     );
     ```
+
+## Register SHA Certificate Fingerprint for Android
+
+When your app uses firebase authentication, it is required that you will provide SHA certificate fingerprint for each Android app in the Firebase project
+and later on it is also needed when you are ready to deploy your flutter project as android app.
+
+You can generate the SHA certificate fingerpring using your debug keystore but later on you should generate as well using the production keystore.
+
+```bash
+keytool -list -alias androiddebugkey -keystore ~/.android/debug.keystore -storepass android -keypass android -v
+```
+
+# Resources
+
+* [Firebase Authentication and Firestore Slides](https://docs.google.com/presentation/d/1bhIojr2-mh3Qjwm50bjxEKnkgfL06gVB8a-pQWtCUBo/edit?usp=share_link)
+* [Google ML Kit Demo APK](https://drive.google.com/file/d/1EhXfFdir3IdNKRQkaJ7sO_FYRotArjLR/view?usp=share_link)
