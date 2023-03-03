@@ -72,3 +72,8 @@ You can generate the SHA certificate fingerpring using your debug keystore but l
 ```bash
 keytool -list -alias androiddebugkey -keystore ~/.android/debug.keystore -storepass android -keypass android -v
 ```
+
+# Resources
+
+* [Firebase Authentication and Firestore Slides](https://docs.google.com/presentation/d/1bhIojr2-mh3Qjwm50bjxEKnkgfL06gVB8a-pQWtCUBo/edit?usp=share_link)
+* [Google ML Kit Demo APK](https://drive.google.com/file/d/1EhXfFdir3IdNKRQkaJ7sO_FYRotArjLR/view?usp=share_link)
