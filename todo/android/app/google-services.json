@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "385934947630",
+    "firebase_url": "https://uic-gdsc-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "uic-gdsc",
     "storage_bucket": "uic-gdsc.appspot.com"
   },
@@ -14,7 +15,23 @@
       },
       "oauth_client": [
         {
-          "client_id": "385934947630-6uvkformtve3t1jvpp3ohkgvlkoel0m1.apps.googleusercontent.com",
+          "client_id": "385934947630-1glid3fcarog7on15lmfhjstvnoe0f30.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.todo",
+            "certificate_hash": "321d2f7e3bde494fdc1d92d6020f53fc48af8a5e"
+          }
+        },
+        {
+          "client_id": "385934947630-jb5ned13bpfcl8jaglh636s1dhodegaa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.todo",
+            "certificate_hash": "4097a3f8f4917148f1f4519412dcfc5360acb2eb"
+          }
+        },
+        {
+          "client_id": "385934947630-4sjam5p3r06trhfe5vsocdsbqaf72op5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,43 +44,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "385934947630-6uvkformtve3t1jvpp3ohkgvlkoel0m1.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "385934947630-7on2u3i6d5g23rmm3i0p5b0atrs2emcv.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.todo.todo"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:385934947630:android:5a7bf0fa159858438736bf",
-        "android_client_info": {
-          "package_name": "com.example.todo.todo"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "385934947630-6uvkformtve3t1jvpp3ohkgvlkoel0m1.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyB3ft5ibDpDyMTCq6W2V1u-by7VTHIlaQM"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "385934947630-6uvkformtve3t1jvpp3ohkgvlkoel0m1.apps.googleusercontent.com",
+              "client_id": "385934947630-4sjam5p3r06trhfe5vsocdsbqaf72op5.apps.googleusercontent.com",
               "client_type": 3
             },
             {
