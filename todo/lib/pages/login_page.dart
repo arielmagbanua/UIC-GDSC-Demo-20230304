@@ -134,9 +134,9 @@ class _LoginPageState extends State<LoginPage> {
 
     // create a user doc to user collection
     _usersRef.doc(userCredential.user!.uid).set(
-      userDoc,
-      SetOptions(merge: true),
-    );
+          userDoc,
+          SetOptions(merge: true),
+        );
 
     return userCredential;
   }

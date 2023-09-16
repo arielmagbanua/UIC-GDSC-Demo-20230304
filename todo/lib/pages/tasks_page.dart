@@ -95,7 +95,10 @@ class _TasksPageState extends State<TasksPage> {
         final taskDoc = task.data();
 
         // get the deadline as timestamp
-        final deadline = task['deadline'] as Timestamp;
+        // final deadline = task['deadline'] as Timestamp;
+        final deadline = taskDoc.containsKey('deadline')
+            ? (task['deadline'] as Timestamp).toDate().toString()
+            : '';
 
         return Dismissible(
           key: Key(task.id),
@@ -138,7 +141,7 @@ class _TasksPageState extends State<TasksPage> {
               child: CheckboxListTile(
                 key: ValueKey(task.id),
                 subtitle: Text(
-                  deadline.toDate().toString(),
+                  deadline,
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
                 title: Text(
